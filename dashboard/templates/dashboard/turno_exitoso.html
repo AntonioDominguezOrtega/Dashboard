@@ -5,17 +5,85 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro Generado</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa; /* Fondo claro */
+            color: #333; /* Color de texto */
+        }
+        .header {
+            background-color: #006400; /* Verde oscuro */
+            color: white;
+            padding: 20px;
+            display: flex; /* Usar flexbox para alinear elementos */
+            align-items: center; /* Centrar verticalmente */
+        }
+        .header .btn {
+            margin-right: auto; /* Empujar el botón a la izquierda */
+        }
+        h1 {
+            margin: 0;
+            font-size: 32px; /* Aumentar tamaño del título */
+            text-align: center; /* Alinear el texto al centro */
+            flex-grow: 1; /* Permitir que el título ocupe el espacio disponible */
+        }
+        .parent {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            grid-template-rows: repeat(4, 1fr);
+            gap: 8px;
+            margin: 30px auto; /* Centrar el contenedor */
+            max-width: 600px; /* Ancho máximo para centrar */
+            background-color: white; /* Fondo blanco para el contenedor */
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+        }
+        .tipo, .turno, .sucursal, .dia, .hora, .tipo-movimiento {
+            background-color: #e8f5e9; /* Fondo verde claro */
+            padding: 20px; /* Aumentar el padding */
+            border: 2px solid #006400; /* Borde verde */
+            border-radius: 5px;
+            font-size: 20px; /* Aumentar el tamaño de la fuente */
+        }
+        .tipo {
+            grid-column: span 3 / span 3;
+        }
+        .turno {
+            grid-column: span 2 / span 2;
+            grid-row-start: 2;
+        }
+        .sucursal {
+            grid-column: span 2 / span 2;
+            grid-column-start: 1;
+            grid-row-start: 3;
+        }
+        .dia {
+            grid-column-start: 3;
+            grid-row-start: 2;
+        }
+        .hora {
+            grid-column-start: 3;
+            grid-row-start: 3;
+        }
+        .tipo-movimiento {
+            grid-column: span 3 / span 3;
+            grid-row-start: 4;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">¡Registro Generado!</h1>
-        <p class="text-center"><strong>Tipo:</strong> {{ tipo|capfirst }}</p>
-        <p class="text-center"><strong>Turno:</strong> {{ turno }}</p>
-        <p class="text-center"><strong>Sucursal:</strong> {{ sucursal }}</p>
-        <p class="text-center"><strong>Día:</strong> {{ dia }}</p>
-        <p class="text-center"><strong>Hora:</strong> {{ hora }}</p>
-        <p class="text-center"><strong>Movimiento:</strong> {{ movimiento }}</p>
+    <div class="header">
         <a href="{% url 'generar_turno' %}" class="btn btn-secondary">Regresar</a>
+        <h1>¡Registro Generado!</h1>
+    </div>
+    <div class="parent">
+        <div class="tipo">Tipo: {{ tipo|capfirst }}</div>
+        <div class="turno">Turno: {{ turno }}</div>
+        <div class="sucursal">Sucursal: {{ sucursal }}</div>
+        <div class="dia">Día: {{ dia }}</div>
+        <div class="hora">Hora: {{ hora }}</div>
+        <div class="tipo-movimiento">Tipo de Movimiento: {{ movimiento }}</div>
     </div>
 </body>
 </html>
