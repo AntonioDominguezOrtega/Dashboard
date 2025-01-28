@@ -3,17 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Generar Turno o Agendar Cita</title>
+    <title>Agenda tu cita</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            background-color: #ffffff;
+            margin: 0;
+            padding: 0;
+        }
+        .header {
+            background-color: #006400;
+            padding: 20px;
+            position: relative;
+        }
+        .header img {
+            width: 100px;
+            height: auto;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        h1 {
+            color: #006400;
+            font-size: 24px;
+        }
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #006400;
+            margin-bottom: 5px;
+        }
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #006400;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        .form-group small {
+            display: block;
+            color: #666666;
+            margin-top: 5px;
+        }
+        .form-group .select-container {
+            position: relative;
+        }
+        .form-group .select-container .fa-chevron-down {
+            position: absolute;
+            right: 10px;
+            top: 50%;
+            transform: translateY(-50%);
+            pointer-events: none;
+            color: #006400;
+        }
+        .form-row {
+            display: flex;
+            justify-content: space-between;
+        }
+        .form-row .form-group {
+            flex: 1;
+            margin-right: 10px;
+        }
+        .form-row .form-group:last-child {
+            margin-right: 0;
+        }
+        .btn {
+            background-color: #006400;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 16px;
+        }
+        .btn:hover {
+            background-color: #004d00;
+        }
+    </style>
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Generar Cita</h1>
+    <div class="header">
+        <img alt="Banco Azteca logo" src="https://placehold.co/100x100"/>
+    </div>
+    <div class="container">
+        <h1>Agenda tu cita</h1>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
-            <button type="submit" class="btn btn-success">Agendar Cita</button>
-        </form>            
+            <div class="form-group">
+                <label for="sucursal">Sucursal</label>
+                <div class="select-container">
+                    {{ form.sucursal }}
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+                <small>¿A qué sucursal quieres acudir para tu cita?</small>
+            </div>
+            <div class="form-row">
+                <div class="form-group">
+                    <label for="dia">Selecciona el día</label>
+                    <div class="select-container">
+                        {{ form.dia }}
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                    <small>¿Qué día quieres tu cita?</small>
+                </div>
+                <div class="form-group">
+                    <label for="hora">Selecciona una hora</label>
+                    <div class="select-container">
+                        {{ form.hora }}
+                        <i class="fa fa-chevron-down"></i>
+                    </div>
+                    <small>¿A qué hora quieres que te atendamos?</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label for="movimiento">Tipo de movimiento</label>
+                <div class="select-container">
+                    {{ form.movimiento }}
+                    <i class="fa fa-chevron-down"></i>
+                </div>
+            </div>
+            <button type="submit" class="btn">Genera tu cita</button>
+        </form>
     </div>
 </body>
 </html>
